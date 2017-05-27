@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/bubeidanci_viewpager_linear_page1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="下载单词离线语音"
+                android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
+        </LinearLayout>
+
+        <View style="@style/bubeidanci_viewpager_linear_page_line" />
+
+        <LinearLayout style="@style/bubeidanci_viewpager_linear_page1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="例句缓存"
+                    android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="0MB" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View style="@style/bubeidanci_viewpager_linear_page_line" />
+
+        <LinearLayout style="@style/bubeidanci_viewpager_linear_page1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="拼写测试"
+                android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
+
+            <Switch
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp" />
+
+
+        </LinearLayout>
+
+        <View style="@style/bubeidanci_viewpager_linear_page_line" />
+
+        <LinearLayout style="@style/bubeidanci_viewpager_linear_page1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="所屏学单词"
+                android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
+
+            <Switch
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp" />
+        </LinearLayout>
+
+        <View style="@style/bubeidanci_viewpager_linear_page_line" />
+
+        <LinearLayout style="@style/bubeidanci_viewpager_linear_page1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="自动发音"
+                android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
+
+            <Switch
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp" />
+        </LinearLayout>
+
+        <View style="@style/bubeidanci_viewpager_linear_page_line" />
+
+        <LinearLayout style="@style/bubeidanci_viewpager_linear_page1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="学习提醒"
+                android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
+
+            <Switch
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp" />
+        </LinearLayout>
+
+        <View style="@style/bubeidanci_viewpager_linear_page_line" />
+
+        <LinearLayout style="@style/bubeidanci_viewpager_linear_page1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="评价应用"
+                    android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="当前版本：1.9.13" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View style="@style/bubeidanci_viewpager_linear_page_line" />
+
+        <LinearLayout style="@style/bubeidanci_viewpager_linear_page1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="意见反馈"
+                android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
+        </LinearLayout>
+
+        <View style="@style/bubeidanci_viewpager_linear_page_line" />
+
+        <LinearLayout style="@style/bubeidanci_viewpager_linear_page1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="隐私政策"
+                android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
+        </LinearLayout>
+
+        <View style="@style/bubeidanci_viewpager_linear_page_line" />
+
+        <LinearLayout style="@style/bubeidanci_viewpager_linear_page1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Flannery"
+                android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
+        </LinearLayout>
+
+        <View style="@style/bubeidanci_viewpager_linear_page_line" />
+
+    </LinearLayout>
+</ScrollView>

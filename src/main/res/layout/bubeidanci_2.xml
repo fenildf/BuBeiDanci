@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#b88f28"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <LinearLayout style="@style/bubeidanci_view2_navitaiton_linearlayout">
+
+            <View style="@style/menu_line_navigation" />
+
+            <ImageView
+                style="@style/bubeidanci_view2_navitaiton_linearlayout_image"
+                android:src="@drawable/settings_icon" />
+
+
+            <TextView
+                android:id="@+id/menu_text_1"
+                style="@style/bubeidanci_view2_navitaiton_linearlayout_textview"
+                android:text="SETTINGS"
+                android:textColor="@color/orange" />
+
+            <View style="@style/menu_line_navigation" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/bubeidanci_view2_navitaiton_linearlayout">
+
+            <View style="@style/menu_line_navigation" />
+
+            <ImageView
+                style="@style/bubeidanci_view2_navitaiton_linearlayout_image"
+                android:src="@drawable/themes_icon" />
+
+            <TextView
+                android:id="@+id/menu_text_2"
+                style="@style/bubeidanci_view2_navitaiton_linearlayout_textview"
+                android:text="THEMES" />
+
+            <View style="@style/menu_line_navigation" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/bubeidanci_view2_navitaiton_linearlayout">
+
+            <View style="@style/menu_line_navigation" />
+
+            <ImageView
+                style="@style/bubeidanci_view2_navitaiton_linearlayout_image"
+                android:src="@drawable/library_icon" />
+
+            <TextView
+                android:id="@+id/menu_text_3"
+                style="@style/bubeidanci_view2_navitaiton_linearlayout_textview"
+                android:text="LIBRARY" />
+
+            <View style="@style/menu_line_navigation" />
+        </LinearLayout>
+
+
+        <LinearLayout style="@style/bubeidanci_view2_navitaiton_linearlayout">
+
+            <View style="@style/menu_line_navigation" />
+
+            <ImageView
+                style="@style/bubeidanci_view2_navitaiton_linearlayout_image"
+                android:src="@drawable/statistics_icon" />
+
+            <TextView
+                android:id="@+id/menu_text_4"
+                style="@style/bubeidanci_view2_navitaiton_linearlayout_textview"
+                android:text="STATISTICS" />
+
+            <View style="@style/menu_line_navigation" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/white" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
