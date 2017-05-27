@@ -1,4 +1,5 @@
-package com.flannery.bubeidanci;
+package com.tpddns.flannery.bubeidanci;
+
 
 import android.content.Context;
 import android.content.Intent;

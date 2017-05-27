@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.flannery.bubeidanci.BuBeiScrollView
+    <com.tpddns.flannery.bubeidanci.BuBeiScrollView
         android:id="@+id/bubeiscrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,4 +1,4 @@
-package com.flannery.bubeidanci;
+package com.tpddns.flannery.bubeidanci;
 
 import org.junit.Test;
 

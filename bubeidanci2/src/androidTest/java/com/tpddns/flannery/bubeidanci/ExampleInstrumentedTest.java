@@ -1,4 +1,4 @@
-package com.flannery.bubeidanci;
+package com.tpddns.flannery.bubeidanci;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.flannery.bubeidanci", appContext.getPackageName());
+        assertEquals("com.tpddns.flannery.bubeidanci", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package com.flannery.bubeidanci;
+package com.tpddns.flannery.bubeidanci;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
