@@ -16,12 +16,14 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
+import com.tpddns.flannery.bubeilibrary.BuBeiBaseView;
+import com.tpddns.flannery.bubeilibrary.BuBeiScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class BuBeiDanCiActivity extends AppCompatActivity {
+public class BuBeiDanCiActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = BuBeiDanCiActivity.class.getSimpleName();
 
     private TextView menu_text_1;
@@ -29,12 +31,13 @@ public class BuBeiDanCiActivity extends AppCompatActivity {
     private TextView menu_text_3;
     private TextView menu_text_4;
 
+    private ViewPager viewpager;
 
     public static final void startBuBeiDanCiActivity(Context ctx) {
         ctx.startActivity(new Intent(ctx, BuBeiDanCiActivity.class));
     }
 
-    private BuBeiScrollView bubeiscrollview;
+    private View bubeiscrollview;
 
     /**
      * 关闭Android导航栏，实现全屏
@@ -66,14 +69,16 @@ public class BuBeiDanCiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty);
         getSupportActionBar().hide();//隐藏掉整个ActionBar，包括下面的Tabs
-        bubeiscrollview = (BuBeiScrollView) findViewById(R.id.bubeiscrollview);
+        bubeiscrollview = findViewById(R.id.bubeiscrollview);
         View view1 = getLayoutInflater().inflate(R.layout.bubeidanci_1, null);
         View view2 = getLayoutInflater().inflate(R.layout.bubeidanci_2, null);
         initMenu(view2);
 
+        initViewFirst();
+        initViewSecond();
 
-        bubeiscrollview.getFrameLayout1().addView(view1);
-        bubeiscrollview.getFrameLayout2().addView(view2);
+        ((BuBeiBaseView) bubeiscrollview).getFrameLayout1().addView(view1);
+        ((BuBeiBaseView) bubeiscrollview).getFrameLayout2().addView(view2);
 
 //        // bubeiscrollview.setVerticalFadingEdgeEnabled();
 //        bubeiscrollview.setOnTouchListener(new View.OnTouchListener() {
@@ -82,7 +87,16 @@ public class BuBeiDanCiActivity extends AppCompatActivity {
 //                return true;
 //            }
 //        });
+        initNavigation();
         initViewPager();
+    }
+
+    private void initViewFirst() {
+
+    }
+
+    private void initViewSecond() {
+
     }
 
     private void initMenu(View view) {
@@ -92,18 +106,38 @@ public class BuBeiDanCiActivity extends AppCompatActivity {
         menu_text_4 = (TextView) view.findViewById(R.id.menu_text_4);
     }
 
+
+    private void initNavigation() {
+        View navigation_settings = findViewById(R.id.navigation_settings);
+        View navigation_themes = findViewById(R.id.navigation_themes);
+        View navigation_library = findViewById(R.id.navigation_library);
+        View navigation_statistics = findViewById(R.id.navigation_statistics);
+        navigation_settings.setOnClickListener(this);
+        navigation_themes.setOnClickListener(this);
+        navigation_library.setOnClickListener(this);
+        navigation_statistics.setOnClickListener(this);
+    }
+
     private void initViewPager() {
+        View bubeidanci_viewpager_demo = getLayoutInflater().inflate(R.layout.bubeidanci_viewpager_demo, null);
         View bubeidanci_viewpager_1 = getLayoutInflater().inflate(R.layout.bubeidanci_viewpager_1, null);
         View bubeidanci_viewpager_2 = getLayoutInflater().inflate(R.layout.bubeidanci_viewpager_2, null);
         View bubeidanci_viewpager_3 = getLayoutInflater().inflate(R.layout.bubeidanci_viewpager_3, null);
         View bubeidanci_viewpager_4 = getLayoutInflater().inflate(R.layout.bubeidanci_viewpager_4, null);
+        initViewPager_demo(bubeidanci_viewpager_demo);
+        initViewPager_1(bubeidanci_viewpager_1);
+        initViewPager_2(bubeidanci_viewpager_2);
+        initViewPager_3(bubeidanci_viewpager_3);
+        initViewPager_4(bubeidanci_viewpager_4);
+
         final List<View> listViews = new ArrayList<>();
+        listViews.add(bubeidanci_viewpager_demo);
         listViews.add(bubeidanci_viewpager_1);
         listViews.add(bubeidanci_viewpager_2);
         listViews.add(bubeidanci_viewpager_3);
         listViews.add(bubeidanci_viewpager_4);
 
-        ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
+        viewpager = (ViewPager) findViewById(R.id.viewpager);
         viewpager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
@@ -146,6 +180,34 @@ public class BuBeiDanCiActivity extends AppCompatActivity {
     }
 
 
+    private void initViewPager_demo(View view) {
+//        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_demo);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        List<TypeInterface> list = new ArrayList<>();
+//        for (int i = 0; i < 100; i++) {
+//            list.add(new OneType("i " + i));
+//        }
+//
+//
+//        recyclerView.setAdapter(new MyAdapter(list, this));
+    }
+
+    private void initViewPager_1(View view) {
+
+    }
+
+    private void initViewPager_2(View view) {
+
+    }
+
+    private void initViewPager_3(View view) {
+
+    }
+
+    private void initViewPager_4(View view) {
+
+    }
+
     private void setMenuTextWhite() {
         menu_text_1.setTextColor(Color.WHITE);
         menu_text_2.setTextColor(Color.WHITE);
@@ -173,7 +235,7 @@ public class BuBeiDanCiActivity extends AppCompatActivity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Logger.t(TAG).d("onTouchEvent()");
+        //Logger.t(TAG).d("onTouchEvent()");
         return super.onTouchEvent(event);
     }
 
@@ -186,5 +248,31 @@ public class BuBeiDanCiActivity extends AppCompatActivity {
     public void clickSub(View view) {
         bubeiscrollview.scrollTo(400, 400);
         Logger.t(TAG).d("clickSub()");
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.navigation_settings:
+                setMenuTextWhite();
+                menu_text_1.setTextColor(getResources().getColor(R.color.orange));
+                viewpager.setCurrentItem(0);
+                break;
+            case R.id.navigation_themes:
+                setMenuTextWhite();
+                menu_text_2.setTextColor(getResources().getColor(R.color.orange));
+                viewpager.setCurrentItem(1);
+                break;
+            case R.id.navigation_library:
+                setMenuTextWhite();
+                menu_text_3.setTextColor(getResources().getColor(R.color.orange));
+                viewpager.setCurrentItem(2);
+                break;
+            case R.id.navigation_statistics:
+                setMenuTextWhite();
+                menu_text_4.setTextColor(getResources().getColor(R.color.orange));
+                viewpager.setCurrentItem(3);
+                break;
+        }
     }
 }

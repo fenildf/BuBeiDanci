@@ -5,13 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.tpddns.flannery.bubeidanci.BuBeiScrollView
+
+    <com.tpddns.flannery.bubeilibrary.BuBeiLiearLayout
         android:id="@+id/bubeiscrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fadingEdge="none"
-        android:requiresFadingEdge="none"
-        android:scrollbars="none" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+    <!--    <com.tpddns.flannery.bubeilibrary.BuBeiLiearLayout
+            android:id="@+id/bubeiscrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadingEdge="none"
+            android:requiresFadingEdge="none"
+            android:scrollbars="none" />-->
 
     <RelativeLayout
         android:layout_width="match_parent"

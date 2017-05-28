@@ -1,1 +1,1 @@
-include ':app', ':bubeidanci2'
+include ':bubeidanci2', ':bubeilibrary'

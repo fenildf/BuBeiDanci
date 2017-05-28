@@ -173,18 +173,18 @@
 
         <View style="@style/bubeidanci_viewpager_linear_page_line" />
 
-        <LinearLayout style="@style/bubeidanci_viewpager_linear_page1">
+    <LinearLayout style="@style/bubeidanci_viewpager_linear_page1">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Flannery"
-                android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
-        </LinearLayout>
-
-        <View style="@style/bubeidanci_viewpager_linear_page_line" />
-
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Flannery"
+            android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
     </LinearLayout>
+
+    <View style="@style/bubeidanci_viewpager_linear_page_line" />
+
+</LinearLayout>
 </ScrollView>
