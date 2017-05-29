@@ -79,6 +79,13 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
         frameLayout2.setLayoutParams(new LayoutParams(screenWidth, screenHeight, Gravity.CENTER));
         container.addView(frameLayout2, screenWidth, screenHeight);
 
+//        setOnTouchListener(new OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                return mDetector.onTouchEvent(event);
+//            }
+//        });
+
         //this.addView(container);
 //        setOnTouchListener(new OnTouchListener() {
 //            @Override
@@ -98,7 +105,7 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
 //
 //
 //                //scrollBy(0, 20);
-//                mDetector.onTouchEvent(event);
+        // mDetector.onTouchEvent(event);
 //                return true;
 //            }
 //        });
@@ -124,18 +131,15 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
     private GestureDetector.OnGestureListener mOnGestureListener = new GestureDetector.OnGestureListener() {
         @Override
         public boolean onDown(MotionEvent e) {
-            Logger.t(TAG).d("onDown");
             return false;
         }
 
         @Override
         public void onShowPress(MotionEvent e) {
-            Logger.t(TAG).d("onShowPress");
         }
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            Logger.t(TAG).d("onSingleTapUp");
             return false;
         }
 
@@ -148,25 +152,23 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
 
         @Override
         public void onLongPress(MotionEvent e) {
-            Logger.t(TAG).d("onLongPress");
         }
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            Logger.t(TAG).d("onFling");
             return false;
         }
     };
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Logger.t(TAG).d("onInterceptTouchEvent() " + ev.getAction());
         return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        Logger.t(TAG).d("onTouchEvent(MotionEvent ev) ");
+        Logger.t(TAG).d("onTouchEvent(MotionEvent ev)");
+//        Logger.t(TAG).d("onTouchEvent(MotionEvent ev) ");
 //        switch (ev.getAction()) {
 //            case MotionEvent.ACTION_DOWN:
 //                Logger.t(TAG).d("ACTION_DOWN");
@@ -181,9 +183,22 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
 //
 //
 //        //scrollBy(0, 20);
-        mDetector.onTouchEvent(ev);
-        return true;
+        //mDetector.onTouchEvent(ev);
+        return super.onTouchEvent(ev);
         //return true;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Logger.t(TAG).d("dispatchTouchEvent(MotionEvent ev)");
+        mDetector.onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onInterceptHoverEvent(MotionEvent event) {
+        Logger.t(TAG).d("onInterceptHoverEvent(MotionEvent event)");
+        return super.onInterceptHoverEvent(event);
     }
 
     @Override

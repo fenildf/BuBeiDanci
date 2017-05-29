@@ -131,7 +131,6 @@ public class BuBeiScrollView extends ScrollView {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Logger.t(TAG).d("onInterceptTouchEvent() " + ev.getAction());
         return super.onInterceptTouchEvent(ev);
     }
 

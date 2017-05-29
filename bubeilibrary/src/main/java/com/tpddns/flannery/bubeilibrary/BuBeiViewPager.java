@@ -26,13 +26,13 @@ public class BuBeiViewPager extends ViewPager {
     }
 
     public void init() {
-        setOnTouchListener(new OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Logger.t(TAG).d("onTouch " + event.getY());
-                return false;
-            }
-        });
+//        setOnTouchListener(new OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                Logger.t(TAG).d("onTouch " + event.getY());
+//                return false;
+//            }
+//        });
     }
 
 }

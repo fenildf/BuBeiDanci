@@ -39,28 +39,6 @@ public class BuBeiDanCiActivity extends AppCompatActivity implements View.OnClic
 
     private View bubeiscrollview;
 
-    /**
-     * 关闭Android导航栏，实现全屏
-     */
-    private void closeBar() {
-        try {
-            String command;
-            command = "LD_LIBRARY_PATH=/vendor/lib:/system/lib service call activity 42 s16 com.android.systemui";
-            ArrayList<String> envlist = new ArrayList<String>();
-            Map<String, String> env = System.getenv();
-            for (String envName : env.keySet()) {
-                envlist.add(envName + "=" + env.get(envName));
-            }
-            String[] envp = envlist.toArray(new String[0]);
-            Process proc = Runtime.getRuntime().exec(
-                    new String[]{"su", "-c", command}, envp);
-            proc.waitFor();
-        } catch (Exception ex) {
-            // Toast.makeText(getApplicationContext(), ex.getMessage(),
-            // Toast.LENGTH_LONG).show();
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -72,10 +50,10 @@ public class BuBeiDanCiActivity extends AppCompatActivity implements View.OnClic
         bubeiscrollview = findViewById(R.id.bubeiscrollview);
         View view1 = getLayoutInflater().inflate(R.layout.bubeidanci_1, null);
         View view2 = getLayoutInflater().inflate(R.layout.bubeidanci_2, null);
-        initMenu(view2);
 
-        initViewFirst();
-        initViewSecond();
+
+        initViewFirst(view1);
+        initViewSecond(view2);
 
         ((BuBeiBaseView) bubeiscrollview).getFrameLayout1().addView(view1);
         ((BuBeiBaseView) bubeiscrollview).getFrameLayout2().addView(view2);
@@ -87,16 +65,17 @@ public class BuBeiDanCiActivity extends AppCompatActivity implements View.OnClic
 //                return true;
 //            }
 //        });
-        initNavigation();
-        initViewPager();
-    }
-
-    private void initViewFirst() {
 
     }
 
-    private void initViewSecond() {
+    private void initViewFirst(View view) {
 
+    }
+
+    private void initViewSecond(View view2) {
+        initNavigation(view2);
+        initMenu(view2);
+        initViewPager(view2);
     }
 
     private void initMenu(View view) {
@@ -107,18 +86,18 @@ public class BuBeiDanCiActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-    private void initNavigation() {
-        View navigation_settings = findViewById(R.id.navigation_settings);
-        View navigation_themes = findViewById(R.id.navigation_themes);
-        View navigation_library = findViewById(R.id.navigation_library);
-        View navigation_statistics = findViewById(R.id.navigation_statistics);
+    private void initNavigation(View view) {
+        View navigation_settings = view.findViewById(R.id.navigation_settings);
+        View navigation_themes = view.findViewById(R.id.navigation_themes);
+        View navigation_library = view.findViewById(R.id.navigation_library);
+        View navigation_statistics = view.findViewById(R.id.navigation_statistics);
         navigation_settings.setOnClickListener(this);
         navigation_themes.setOnClickListener(this);
         navigation_library.setOnClickListener(this);
         navigation_statistics.setOnClickListener(this);
     }
 
-    private void initViewPager() {
+    private void initViewPager(View view) {
         View bubeidanci_viewpager_demo = getLayoutInflater().inflate(R.layout.bubeidanci_viewpager_demo, null);
         View bubeidanci_viewpager_1 = getLayoutInflater().inflate(R.layout.bubeidanci_viewpager_1, null);
         View bubeidanci_viewpager_2 = getLayoutInflater().inflate(R.layout.bubeidanci_viewpager_2, null);
@@ -137,7 +116,7 @@ public class BuBeiDanCiActivity extends AppCompatActivity implements View.OnClic
         listViews.add(bubeidanci_viewpager_3);
         listViews.add(bubeidanci_viewpager_4);
 
-        viewpager = (ViewPager) findViewById(R.id.viewpager);
+        viewpager = (ViewPager) view.findViewById(R.id.viewpager);
         viewpager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
