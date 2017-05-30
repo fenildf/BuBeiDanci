@@ -61,10 +61,10 @@
                     android:text="拼写测试"
                     android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
 
-                <Switch
-                    android:layout_width="80dp"
+<!--                <Switch
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp" />
+                    android:layout_marginRight="20dp" />-->
 
 
             </LinearLayout>
@@ -81,10 +81,10 @@
                     android:text="所屏学单词"
                     android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
 
-                <Switch
+<!--                <Switch
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp" />
+                    android:layout_marginRight="20dp" />-->
             </LinearLayout>
 
             <View style="@style/bubeidanci_viewpager_linear_page_line" />
@@ -99,10 +99,10 @@
                     android:text="自动发音"
                     android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
 
-                <Switch
+<!--                <Switch
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp" />
+                    android:layout_marginRight="20dp" />-->
             </LinearLayout>
 
             <View style="@style/bubeidanci_viewpager_linear_page_line" />
@@ -117,10 +117,10 @@
                     android:text="学习提醒"
                     android:textSize="@dimen/bubeidanci_viewpage_linear_main_text_size" />
 
-                <Switch
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp" />
+                <!--                <Switch
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="20dp" />-->
             </LinearLayout>
 
             <View style="@style/bubeidanci_viewpager_linear_page_line" />

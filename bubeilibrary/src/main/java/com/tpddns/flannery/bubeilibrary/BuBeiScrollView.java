@@ -15,6 +15,7 @@ import android.widget.ScrollView;
 import com.orhanobut.logger.Logger;
 
 /**
+ * @deprecated  已经废弃不用
  * Created by flannery on 17-5-26.
  */
 

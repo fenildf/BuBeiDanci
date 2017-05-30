@@ -17,4 +17,12 @@ public interface BuBeiBaseView {
     int getScreenHeight();
 
     void setMaxMenuHeight(int maxMenuHeight);
+
+    void gotoPage2();
+
+    void gotoMenuOpen();
+
+    void gotoMenuClose();
+
+    boolean isMenuOpen();
 }

@@ -17,6 +17,10 @@ import com.orhanobut.logger.Logger;
 public class BuBeiChildScrollView extends ScrollView {
     private String TAG = BuBeiChildScrollView.class.getSimpleName();
 
+    private void log(String text) {
+        android.util.Log.d(TAG, text);
+    }
+
     public ScrollView parentScrollView;
     private int lastScrollDelta = 0;
     int mTop = 0;
@@ -37,14 +41,31 @@ public class BuBeiChildScrollView extends ScrollView {
     }
 
     private void init() {
+        //getParent().requestDisallowInterceptTouchEvent(true);
+    }
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        log("onInterceptTouchEvent(MotionEvent ev)");
+        return super.onInterceptTouchEvent(ev);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        log("dispatchTouchEvent(MotionEvent ev)");
+        return super.dispatchTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-
-        Logger.t(TAG).d("ev -> " + getScrollY());
+        log("onTouchEvent(MotionEvent ev)");
         return super.onTouchEvent(ev);
+    }
+
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        log("l -> " + l + " , t -> " + t + " , oldl -> " + oldl + ", oldt-> " + oldt);
     }
 }
 

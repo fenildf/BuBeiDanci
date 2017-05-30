@@ -172,6 +172,7 @@
             android:layout_height="match_parent" />
 
         <ImageView
+            android:id="@+id/open_menu"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@mipmap/menu_left" />

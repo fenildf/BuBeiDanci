@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class BuBeiDanCiActivity extends AppCompatActivity implements View.OnClickListener {
+public class BuBeiDanCiActivity extends AppCompatActivity {
     private static final String TAG = BuBeiDanCiActivity.class.getSimpleName();
 
     private TextView menu_text_1;
@@ -37,7 +38,7 @@ public class BuBeiDanCiActivity extends AppCompatActivity implements View.OnClic
         ctx.startActivity(new Intent(ctx, BuBeiDanCiActivity.class));
     }
 
-    private View bubeiscrollview;
+    private BuBeiBaseView buBeiBaseView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +48,21 @@ public class BuBeiDanCiActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty);
         getSupportActionBar().hide();//隐藏掉整个ActionBar，包括下面的Tabs
-        bubeiscrollview = findViewById(R.id.bubeiscrollview);
+        View bubeiscrollview = findViewById(R.id.bubeiscrollview);
+        buBeiBaseView = (BuBeiBaseView) bubeiscrollview;
         View view1 = getLayoutInflater().inflate(R.layout.bubeidanci_1, null);
-        View view2 = getLayoutInflater().inflate(R.layout.bubeidanci_2, null);
+        final View view2 = getLayoutInflater().inflate(R.layout.bubeidanci_2, null);
 
 
         initViewFirst(view1);
         initViewSecond(view2);
 
-        ((BuBeiBaseView) bubeiscrollview).getFrameLayout1().addView(view1);
-        ((BuBeiBaseView) bubeiscrollview).getFrameLayout2().addView(view2);
+
+        buBeiBaseView.getFrameLayout1().addView(view1);
+        buBeiBaseView.getFrameLayout2().addView(view2);
+
+        //initMenuHeight(view2);
+
 
 //        // bubeiscrollview.setVerticalFadingEdgeEnabled();
 //        bubeiscrollview.setOnTouchListener(new View.OnTouchListener() {
@@ -69,13 +75,81 @@ public class BuBeiDanCiActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initViewFirst(View view) {
+        View open_menu = view.findViewById(R.id.open_menu);
+        open_menu.setOnClickListener(mFisrtPageOnClickListener);
 
     }
 
-    private void initViewSecond(View view2) {
+    private View.OnClickListener mFisrtPageOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.open_menu:
+                    buBeiBaseView.gotoMenuOpen();
+                    break;
+            }
+        }
+    };
+
+    private View.OnClickListener mSecondPageOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            buBeiBaseView.gotoPage2();
+            switch (v.getId()) {
+                case R.id.navigation_settings:
+                    setMenuTextWhite();
+                    if (menu_text_1 != null)
+                        menu_text_1.setTextColor(getResources().getColor(R.color.orange));
+                    if (viewpager != null) viewpager.setCurrentItem(0);
+                    break;
+                case R.id.navigation_themes:
+                    setMenuTextWhite();
+                    if (menu_text_2 != null)
+                        menu_text_2.setTextColor(getResources().getColor(R.color.orange));
+                    if (viewpager != null) viewpager.setCurrentItem(1);
+                    break;
+                case R.id.navigation_library:
+                    setMenuTextWhite();
+                    if (menu_text_3 != null)
+                        menu_text_3.setTextColor(getResources().getColor(R.color.orange));
+                    if (viewpager != null) viewpager.setCurrentItem(2);
+                    break;
+                case R.id.navigation_statistics:
+                    setMenuTextWhite();
+                    if (menu_text_4 != null)
+                        menu_text_4.setTextColor(getResources().getColor(R.color.orange));
+                    if (viewpager != null) viewpager.setCurrentItem(3);
+                    break;
+            }
+        }
+    };
+
+    private void initViewSecond(final View view2) {
         initNavigation(view2);
         initMenu(view2);
         initViewPager(view2);
+        ViewTreeObserver vto = view2.getViewTreeObserver();
+        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            boolean isget = false;
+
+            @Override
+            public boolean onPreDraw() {
+                if (!isget) {
+                    initMenuHeight(view2);
+                    isget = true;
+                }
+                return true;
+            }
+        });
+    }
+
+    private void initMenuHeight(View view) {
+        View menu = view.findViewById(R.id.bubeidanci_menu);
+
+        int height = menu.getMeasuredHeight();
+        int width = menu.getMeasuredWidth();
+        buBeiBaseView.setMaxMenuHeight(height);
     }
 
     private void initMenu(View view) {
@@ -91,11 +165,12 @@ public class BuBeiDanCiActivity extends AppCompatActivity implements View.OnClic
         View navigation_themes = view.findViewById(R.id.navigation_themes);
         View navigation_library = view.findViewById(R.id.navigation_library);
         View navigation_statistics = view.findViewById(R.id.navigation_statistics);
-        navigation_settings.setOnClickListener(this);
-        navigation_themes.setOnClickListener(this);
-        navigation_library.setOnClickListener(this);
-        navigation_statistics.setOnClickListener(this);
+        navigation_settings.setOnClickListener(mSecondPageOnClickListener);
+        navigation_themes.setOnClickListener(mSecondPageOnClickListener);
+        navigation_library.setOnClickListener(mSecondPageOnClickListener);
+        navigation_statistics.setOnClickListener(mSecondPageOnClickListener);
     }
+
 
     private void initViewPager(View view) {
         View bubeidanci_viewpager_demo = getLayoutInflater().inflate(R.layout.bubeidanci_viewpager_demo, null);
@@ -188,26 +263,30 @@ public class BuBeiDanCiActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void setMenuTextWhite() {
-        menu_text_1.setTextColor(Color.WHITE);
-        menu_text_2.setTextColor(Color.WHITE);
-        menu_text_3.setTextColor(Color.WHITE);
-        menu_text_4.setTextColor(Color.WHITE);
+        if (menu_text_1 != null) menu_text_1.setTextColor(Color.WHITE);
+        if (menu_text_2 != null) menu_text_2.setTextColor(Color.WHITE);
+        if (menu_text_3 != null) menu_text_3.setTextColor(Color.WHITE);
+        if (menu_text_4 != null) menu_text_4.setTextColor(Color.WHITE);
     }
 
     private void setMenuTextColor(int index) {
         Logger.t(TAG).d("index = " + index);
         switch (index) {
             case 0:
-                menu_text_1.setTextColor(getResources().getColor(R.color.orange));
+                if (menu_text_1 != null)
+                    menu_text_1.setTextColor(getResources().getColor(R.color.orange));
                 break;
             case 1:
-                menu_text_2.setTextColor(getResources().getColor(R.color.orange));
+                if (menu_text_2 != null)
+                    menu_text_2.setTextColor(getResources().getColor(R.color.orange));
                 break;
             case 2:
-                menu_text_3.setTextColor(getResources().getColor(R.color.orange));
+                if (menu_text_3 != null)
+                    menu_text_3.setTextColor(getResources().getColor(R.color.orange));
                 break;
             case 3:
-                menu_text_4.setTextColor(getResources().getColor(R.color.orange));
+                if (menu_text_4 != null)
+                    menu_text_4.setTextColor(getResources().getColor(R.color.orange));
                 break;
         }
     }
@@ -220,38 +299,39 @@ public class BuBeiDanCiActivity extends AppCompatActivity implements View.OnClic
 
     public void clickAdd(View view) {
         Logger.t(TAG).d("clickAdd()");
-        bubeiscrollview.scrollBy(0, 200);
+        //bubeiscrollview.scrollBy(0, 200);
 
     }
 
     public void clickSub(View view) {
-        bubeiscrollview.scrollTo(400, 400);
+        //bubeiscrollview.scrollTo(400, 400);
         Logger.t(TAG).d("clickSub()");
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.navigation_settings:
-                setMenuTextWhite();
-                menu_text_1.setTextColor(getResources().getColor(R.color.orange));
-                viewpager.setCurrentItem(0);
-                break;
-            case R.id.navigation_themes:
-                setMenuTextWhite();
-                menu_text_2.setTextColor(getResources().getColor(R.color.orange));
-                viewpager.setCurrentItem(1);
-                break;
-            case R.id.navigation_library:
-                setMenuTextWhite();
-                menu_text_3.setTextColor(getResources().getColor(R.color.orange));
-                viewpager.setCurrentItem(2);
-                break;
-            case R.id.navigation_statistics:
-                setMenuTextWhite();
-                menu_text_4.setTextColor(getResources().getColor(R.color.orange));
-                viewpager.setCurrentItem(3);
-                break;
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        buBeiBaseView.gotoPage2();
+//        switch (v.getId()) {
+//            case R.id.navigation_settings:
+//                setMenuTextWhite();
+//                menu_text_1.setTextColor(getResources().getColor(R.color.orange));
+//                viewpager.setCurrentItem(0);
+//                break;
+//            case R.id.navigation_themes:
+//                setMenuTextWhite();
+//                menu_text_2.setTextColor(getResources().getColor(R.color.orange));
+//                viewpager.setCurrentItem(1);
+//                break;
+//            case R.id.navigation_library:
+//                setMenuTextWhite();
+//                menu_text_3.setTextColor(getResources().getColor(R.color.orange));
+//                viewpager.setCurrentItem(2);
+//                break;
+//            case R.id.navigation_statistics:
+//                setMenuTextWhite();
+//                menu_text_4.setTextColor(getResources().getColor(R.color.orange));
+//                viewpager.setCurrentItem(3);
+//                break;
+//        }
+//    }
 }

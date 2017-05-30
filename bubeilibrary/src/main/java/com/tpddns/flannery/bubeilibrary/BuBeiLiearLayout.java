@@ -26,11 +26,9 @@ import com.orhanobut.logger.Logger;
 public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
     public static final String TAG = BuBeiLiearLayout.class.getSimpleName();
 
-    private GestureDetectorCompat mDetector;
-    private Scroller mScroller;
-
-
-    private int maxMenuHeight;
+    private void log(String text) {
+        android.util.Log.d(TAG, text);
+    }
 
 
     public BuBeiLiearLayout(Context context) {
@@ -53,6 +51,13 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
     private int screenWidth;
     private int screenHeight;
     private int lastY;
+    private GestureDetectorCompat mDetector;
+    private Scroller mScroller;
+
+    //最大的Menu的宽度, 这里是通过设置而得到的
+    private int maxMenuHeight;
+    // 就是为了计算移动出Menu
+    private int firstPageMoveHeight;
 
 
     private void init(Context context) {
@@ -67,7 +72,7 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
         screenWidth = dm.widthPixels;
         screenHeight = dm.heightPixels;
         //LinearLayout container = new LinearLayout(context);
-        LinearLayout container = this;
+        final LinearLayout container = this;
         container.setOrientation(LinearLayout.VERTICAL);
         container.setLayoutParams(new LinearLayout.LayoutParams(screenWidth, screenHeight * 2));
 
@@ -78,35 +83,12 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
         frameLayout2 = new FrameLayout(context);
         frameLayout2.setLayoutParams(new LayoutParams(screenWidth, screenHeight, Gravity.CENTER));
         container.addView(frameLayout2, screenWidth, screenHeight);
-
-//        setOnTouchListener(new OnTouchListener() {
+//
+//        container.setOnTouchListener(new OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
-//                return mDetector.onTouchEvent(event);
-//            }
-//        });
-
-        //this.addView(container);
-//        setOnTouchListener(new OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                Logger.t(TAG).d("onTouch - " + event.getY());
-//                switch (event.getAction()) {
-//                    case MotionEvent.ACTION_DOWN:
-//                        //Logger.t(TAG).d("ACTION_DOWN");
-//                        break;
-//                    case MotionEvent.ACTION_MOVE:
-//                        //Logger.t(TAG).d("ACTION_MOVE");
-//                        break;
-//                    case MotionEvent.ACTION_UP:
-//                        //Logger.t(TAG).d("ACTION_UP");
-//                        break;
-//                }
-//
-//
-//                //scrollBy(0, 20);
-        // mDetector.onTouchEvent(event);
-//                return true;
+//                log(" container.getX = " + container.getX() + ", containter.getY = " + container.getY() + " container.getTop = " + container.getTop() + " , container.getBottom = " + container.getBottom());
+//                return false;
 //            }
 //        });
     }
@@ -146,7 +128,6 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             scrollBy(0, (int) distanceY);
-            Logger.t(TAG).d("onScroll()");
             return false;
         }
 
@@ -167,37 +148,46 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        Logger.t(TAG).d("onTouchEvent(MotionEvent ev)");
-//        Logger.t(TAG).d("onTouchEvent(MotionEvent ev) ");
-//        switch (ev.getAction()) {
-//            case MotionEvent.ACTION_DOWN:
-//                Logger.t(TAG).d("ACTION_DOWN");
-//                break;
-//            case MotionEvent.ACTION_MOVE:
-//                Logger.t(TAG).d("ACTION_MOVE");
-//                break;
-//            case MotionEvent.ACTION_UP:
-//                Logger.t(TAG).d("ACTION_UP");
-//                break;
-//        }
-//
-//
-//        //scrollBy(0, 20);
+        //log("getX = " + .getX() + " , getY = " + this.getY() + " , getTop = " + this.getTop());
+        //log("onTouchEvent(MotionEvent ev)");
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_UP:
+                break;
+            case MotionEvent.ACTION_DOWN:
+                log("onTouchEvent -> ACTION_DOWN -> " + ev.getY());
+                break;
+            case MotionEvent.ACTION_MOVE:
+                log("onTouchEvent -> ACTION_MOVE -> " + ev.getY());
+                break;
+        }
+        int scrollX = getScrollX();
+        int scrollY = getScrollY();
+        log("scrollX = " + scrollX + " , scrollY = " + scrollY);
         //mDetector.onTouchEvent(ev);
-        return super.onTouchEvent(ev);
+        return true;//super.onTouchEvent(ev);
         //return true;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Logger.t(TAG).d("dispatchTouchEvent(MotionEvent ev)");
         mDetector.onTouchEvent(ev);
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_UP:
+                log("dispatchTouchEvent ACTION_UP");
+                break;
+            case MotionEvent.ACTION_DOWN:
+                log("dispatchTouchEvent ACTION_DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                log("dispatchTouchEvent ACTION_MOVE");
+                break;
+        }
         return super.dispatchTouchEvent(ev);
     }
 
     @Override
     public boolean onInterceptHoverEvent(MotionEvent event) {
-        Logger.t(TAG).d("onInterceptHoverEvent(MotionEvent event)");
+        //log("onInterceptHoverEvent(MotionEvent event)");
         return super.onInterceptHoverEvent(event);
     }
 
@@ -223,11 +213,39 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
 
     /**
      * 设置menu的的长度， 也就是第一页滑动的距离
+     * 设置menu的的长度， 也就是第一页滑动的距离
      *
      * @param maxMenuHeight
      */
     @Override
     public void setMaxMenuHeight(int maxMenuHeight) {
+        log("setMaxMenuHeight = " + maxMenuHeight);
         this.maxMenuHeight = maxMenuHeight;
+    }
+
+    @Override
+    public void gotoPage2() {
+        scrollTo(0, getScreenHeight());
+    }
+
+    @Override
+    public void gotoMenuOpen() {
+        if (maxMenuHeight > 0) {
+            log("gotoMenuOpen = " + maxMenuHeight + " getHeight = " + getScreenHeight());
+            //scrollTo(0, maxMenuHeight);
+            scrollTo(0, maxMenuHeight);
+        }
+    }
+
+    @Override
+    public void gotoMenuClose() {
+        if (maxMenuHeight > 0) {
+            scrollBy(0, getScreenHeight() - firstPageMoveHeight);
+        }
+    }
+
+    @Override
+    public boolean isMenuOpen() {
+        return false;
     }
 }
