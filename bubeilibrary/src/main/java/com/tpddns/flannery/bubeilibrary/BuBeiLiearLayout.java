@@ -162,11 +162,18 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
                 break;
             case MotionEvent.ACTION_MOVE:
                 //log("onTouchEvent -> ACTION_MOVE -> " + ev.getY());
-                log("onTouchEvent  ACTION_MOVE");
                 //计算移动的距离
+
+
                 float offY = y - lastY;
+                log("onTouchEvent  ACTION_MOVE 0 offY = " + offY + " , getScrollY = " + getScrollY());
+                if (getScrollY() <= 0 && offY > 0) {
+                    offY = 0;
+                }
+                log("onTouchEvent  ACTION_MOVE offY = " + offY + " , getScrollY = " + getScrollY());
                 scrollBy(0, (int) -offY);
                 lastY = y;
+                
                 break;
         }
         //mDetector.onTouchEvent(ev);
