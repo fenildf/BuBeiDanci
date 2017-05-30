@@ -50,8 +50,8 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
     private FrameLayout frameLayout2;
     private int screenWidth;
     private int screenHeight;
-    private int lastY;
-    private GestureDetectorCompat mDetector;
+    //
+    // private GestureDetectorCompat mDetector;
     private Scroller mScroller;
 
     //最大的Menu的宽度, 这里是通过设置而得到的
@@ -63,8 +63,8 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
     private void init(Context context) {
         mScroller = new Scroller(context);
 
-        mDetector = new GestureDetectorCompat(context, mOnGestureListener);
-        mDetector.setOnDoubleTapListener(mOnDoubleTapListener);
+        //mDetector = new GestureDetectorCompat(context, mOnGestureListener);
+        //  mDetector.setOnDoubleTapListener(mOnDoubleTapListener);
 
         DisplayMetrics dm = new DisplayMetrics();
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
@@ -93,53 +93,53 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
 //        });
     }
 
-    private GestureDetector.OnDoubleTapListener mOnDoubleTapListener = new GestureDetector.OnDoubleTapListener() {
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            return false;
-        }
-
-        @Override
-        public boolean onDoubleTap(MotionEvent e) {
-            return false;
-        }
-
-        @Override
-        public boolean onDoubleTapEvent(MotionEvent e) {
-            return false;
-        }
-    };
-
-    private GestureDetector.OnGestureListener mOnGestureListener = new GestureDetector.OnGestureListener() {
-        @Override
-        public boolean onDown(MotionEvent e) {
-            return false;
-        }
-
-        @Override
-        public void onShowPress(MotionEvent e) {
-        }
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-            return false;
-        }
-
-        @Override
-        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            scrollBy(0, (int) distanceY);
-            return false;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent e) {
-        }
-
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            return false;
-        }
-    };
+//    private GestureDetector.OnDoubleTapListener mOnDoubleTapListener = new GestureDetector.OnDoubleTapListener() {
+//        @Override
+//        public boolean onSingleTapConfirmed(MotionEvent e) {
+//            return false;
+//        }
+//
+//        @Override
+//        public boolean onDoubleTap(MotionEvent e) {
+//            return false;
+//        }
+//
+//        @Override
+//        public boolean onDoubleTapEvent(MotionEvent e) {
+//            return false;
+//        }
+//    };
+//
+//    private GestureDetector.OnGestureListener mOnGestureListener = new GestureDetector.OnGestureListener() {
+//        @Override
+//        public boolean onDown(MotionEvent e) {
+//            return false;
+//        }
+//
+//        @Override
+//        public void onShowPress(MotionEvent e) {
+//        }
+//
+//        @Override
+//        public boolean onSingleTapUp(MotionEvent e) {
+//            return false;
+//        }
+//
+//        @Override
+//        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+//            scrollBy(0, (int) distanceY);
+//            return false;
+//        }
+//
+//        @Override
+//        public void onLongPress(MotionEvent e) {
+//        }
+//
+//        @Override
+//        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+//            return false;
+//        }
+//    };
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
@@ -150,36 +150,48 @@ public class BuBeiLiearLayout extends LinearLayout implements BuBeiBaseView {
     public boolean onTouchEvent(MotionEvent ev) {
         //log("getX = " + .getX() + " , getY = " + this.getY() + " , getTop = " + this.getTop());
         //log("onTouchEvent(MotionEvent ev)");
+        float y = ev.getY();
         switch (ev.getAction()) {
             case MotionEvent.ACTION_UP:
+                log("onTouchEvent  ACTION_UP");
                 break;
             case MotionEvent.ACTION_DOWN:
-                log("onTouchEvent -> ACTION_DOWN -> " + ev.getY());
+                //log("onTouchEvent -> ACTION_DOWN -> " + ev.getY());
+                log("onTouchEvent  ACTION_DOWN");
+                lastY = y;
                 break;
             case MotionEvent.ACTION_MOVE:
-                log("onTouchEvent -> ACTION_MOVE -> " + ev.getY());
+                //log("onTouchEvent -> ACTION_MOVE -> " + ev.getY());
+                log("onTouchEvent  ACTION_MOVE");
+                //计算移动的距离
+                float offY = y - lastY;
+                scrollBy(0, (int) -offY);
+                lastY = y;
                 break;
         }
-        int scrollX = getScrollX();
-        int scrollY = getScrollY();
-        log("scrollX = " + scrollX + " , scrollY = " + scrollY);
         //mDetector.onTouchEvent(ev);
         return true;//super.onTouchEvent(ev);
         //return true;
     }
 
+    private float lastY;
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        mDetector.onTouchEvent(ev);
+        //mDetector.onTouchEvent(ev);
         switch (ev.getAction()) {
             case MotionEvent.ACTION_UP:
                 log("dispatchTouchEvent ACTION_UP");
+
                 break;
             case MotionEvent.ACTION_DOWN:
                 log("dispatchTouchEvent ACTION_DOWN");
+                //lastY = ev.getRawY();
                 break;
             case MotionEvent.ACTION_MOVE:
+                //int y = (int) (ev.getRawY() - lastY);
                 log("dispatchTouchEvent ACTION_MOVE");
+                //scrollBy(0, -y);
                 break;
         }
         return super.dispatchTouchEvent(ev);

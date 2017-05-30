@@ -46,19 +46,49 @@ public class BuBeiChildScrollView extends ScrollView {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        log("onInterceptTouchEvent(MotionEvent ev)");
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_UP:
+                log("onInterceptTouchEvent ACTION_UP");
+                break;
+            case MotionEvent.ACTION_DOWN:
+                log("onInterceptTouchEvent ACTION_DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                log("onInterceptTouchEvent ACTION_MOVE");
+                break;
+        }
         return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        log("dispatchTouchEvent(MotionEvent ev)");
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_UP:
+                log("dispatchTouchEvent ACTION_UP");
+                break;
+            case MotionEvent.ACTION_DOWN:
+                log("dispatchTouchEvent ACTION_DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                log("dispatchTouchEvent ACTION_MOVE");
+                break;
+        }
         return super.dispatchTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        log("onTouchEvent(MotionEvent ev)");
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_UP:
+                log("onTouchEvent ACTION_UP");
+                break;
+            case MotionEvent.ACTION_DOWN:
+                log("onTouchEvent ACTION_DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                log("onTouchEvent ACTION_MOVE");
+                break;
+        }
         return super.onTouchEvent(ev);
     }
 
