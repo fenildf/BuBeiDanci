@@ -57,7 +57,7 @@ public class BuBeiChildScrollView extends ScrollView {
                 log("onInterceptTouchEvent ACTION_MOVE");
                 break;
         }
-        return super.onInterceptTouchEvent(ev);
+        return false;//super.onInterceptTouchEvent(ev);
     }
 
     @Override
@@ -89,6 +89,7 @@ public class BuBeiChildScrollView extends ScrollView {
                 log("onTouchEvent ACTION_MOVE");
                 break;
         }
+        //getParent().requestDisallowInterceptTouchEvent(false);
         return super.onTouchEvent(ev);
     }
 

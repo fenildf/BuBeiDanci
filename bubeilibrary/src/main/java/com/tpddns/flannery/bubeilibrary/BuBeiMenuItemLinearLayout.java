@@ -46,9 +46,9 @@ public class BuBeiMenuItemLinearLayout extends LinearLayout {
                 break;
             case MotionEvent.ACTION_DOWN:
                 log("onTouchEvent(MotionEvent event) ACTION_DOWN");
-                if (mOnClickListener != null) {
-                    mOnClickListener.onClick(this);
-                }
+//                if (mOnClickListener != null) {
+//                    mOnClickListener.onClick(this);
+//                }
                 break;
             case MotionEvent.ACTION_MOVE:
                 log("onTouchEvent(MotionEvent event) ACTION_MOVE");
@@ -60,6 +60,20 @@ public class BuBeiMenuItemLinearLayout extends LinearLayout {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         log("dispatchTouchEvent(MotionEvent ev)");
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_UP:
+                log("dispatchTouchEvent(MotionEvent event) ACTION_UP");
+                break;
+            case MotionEvent.ACTION_DOWN:
+                log("dispatchTouchEvent(MotionEvent event) ACTION_DOWN");
+                if (mOnClickListener != null) {
+                    mOnClickListener.onClick(this);
+                }
+                break;
+            case MotionEvent.ACTION_MOVE:
+                log("dispatchTouchEvent(MotionEvent event) ACTION_MOVE");
+                break;
+        }
         return super.dispatchTouchEvent(ev);
     }
 
