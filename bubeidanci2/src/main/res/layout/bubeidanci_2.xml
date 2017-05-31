@@ -11,7 +11,7 @@
         android:layout_height="100dp"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <com.tpddns.flannery.bubeilibrary.BuBeiMenuItemLinearLayout
             android:id="@+id/navigation_settings"
             style="@style/bubeidanci_view2_navitaiton_linearlayout">
 
@@ -29,9 +29,9 @@
                 android:textColor="@color/orange" />
 
             <View style="@style/menu_line_navigation" />
-        </LinearLayout>
+        </com.tpddns.flannery.bubeilibrary.BuBeiMenuItemLinearLayout>
 
-        <LinearLayout
+        <com.tpddns.flannery.bubeilibrary.BuBeiMenuItemLinearLayout
             android:id="@+id/navigation_themes"
             style="@style/bubeidanci_view2_navitaiton_linearlayout">
 
@@ -47,9 +47,9 @@
                 android:text="THEMES" />
 
             <View style="@style/menu_line_navigation" />
-        </LinearLayout>
+        </com.tpddns.flannery.bubeilibrary.BuBeiMenuItemLinearLayout>
 
-        <LinearLayout
+        <com.tpddns.flannery.bubeilibrary.BuBeiMenuItemLinearLayout
             android:id="@+id/navigation_library"
             style="@style/bubeidanci_view2_navitaiton_linearlayout">
 
@@ -65,10 +65,10 @@
                 android:text="LIBRARY" />
 
             <View style="@style/menu_line_navigation" />
-        </LinearLayout>
+        </com.tpddns.flannery.bubeilibrary.BuBeiMenuItemLinearLayout>
 
 
-        <LinearLayout
+        <com.tpddns.flannery.bubeilibrary.BuBeiMenuItemLinearLayout
             android:id="@+id/navigation_statistics"
             style="@style/bubeidanci_view2_navitaiton_linearlayout">
 
@@ -84,7 +84,7 @@
                 android:text="STATISTICS" />
 
             <View style="@style/menu_line_navigation" />
-        </LinearLayout>
+        </com.tpddns.flannery.bubeilibrary.BuBeiMenuItemLinearLayout>
 
     </LinearLayout>
 

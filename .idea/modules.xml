@@ -3,9 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BuBeiDanci.iml" filepath="$PROJECT_DIR$/BuBeiDanci.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BuBeiDanci.iml" filepath="$PROJECT_DIR$/BuBeiDanci.iml" />
       <module fileurl="file://C:\android\github\BuBeiDanci\.idea\modules\BuBeiDanci.iml" filepath="C:\android\github\BuBeiDanci\.idea\modules\BuBeiDanci.iml" />
       <module fileurl="file://C:\android\github\BuBeiDanci\app\app.iml" filepath="C:\android\github\BuBeiDanci\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bubeidanci2/bubeidanci2.iml" filepath="$PROJECT_DIR$/bubeidanci2/bubeidanci2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bubeidanci2/bubeidanci2.iml" filepath="$PROJECT_DIR$/bubeidanci2/bubeidanci2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bubeilibrary/bubeilibrary.iml" filepath="$PROJECT_DIR$/bubeilibrary/bubeilibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/bubeilibrary/bubeilibrary.iml" filepath="$PROJECT_DIR$/bubeilibrary/bubeilibrary.iml" />
     </modules>
   </component>
